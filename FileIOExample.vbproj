@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>FileIOExample</RootNamespace>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <StartupObject>FileIOExample.FileSystemInfo</StartupObject>
+    <StartupObject>FileIOExample.ReadWriteAppend</StartupObject>
   </PropertyGroup>
 
 </Project>

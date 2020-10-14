@@ -1,13 +1,19 @@
 Imports System
+Imports System.IO
 
 Module ReadWriteAppend
-    Sub Main(args As String())
-        Console.WriteLine("Hello World!")
+    Sub Main()
+        Dim fileName As String = "testfile.txt"
+        Dim dataArray() As String
+        ReadFile(fileName, dataArray)
+        'AppendFile(fileName, "Hello")
+        'WriteFile(fileName, "Goodbye")
+        Console.WriteLine(dataArray)
+        Console.ReadLine()
     End Sub
 
-    '<Remarks>
+
     'ReadFile() allows user to choose text file then reads file into TempArray
-    '</Remarks>
     Public Sub ReadFile(ByVal fileName As String, ByRef recordData() As String)
         Dim currentRecord As String
         Dim fileData As String
@@ -19,9 +25,12 @@ Module ReadWriteAppend
                 Input(fileNumber, currentRecord)
                 fileData &= currentRecord
             Loop
+        Catch ex As IOException
+            Console.WriteLine("Oops file not found....")
+            Console.WriteLine($"{vbNewLine}File Name: '{fileName}'")
         Catch ex As Exception
             'TODO: user select file if it doesn't exist
-            Console.WriteLine(ex.Message)
+            Console.WriteLine(GeneralExceptionInfo(ex, fileName))
         Finally
             FileClose(fileNumber)
         End Try
@@ -42,7 +51,8 @@ Module ReadWriteAppend
         Catch ex As Exception
             'TODO: user select file if it doesn't exist
             'handle file in use exception
-            'verify other possible exceptions           
+            'verify other possible exceptions     
+            Console.WriteLine(GeneralExceptionInfo(ex, filename))
         Finally
             FileClose(fileNumber)
         End Try
@@ -59,11 +69,19 @@ Module ReadWriteAppend
         Catch ex As Exception
             'TODO: user select file if it doesn't exist
             'handle file in use exception
-            'verify other possible exceptions           
+            'verify other possible exceptions
+            Console.WriteLine(GeneralExceptionInfo(ex, filename))
         Finally
             FileClose(fileNumber)
         End Try
 
     End Sub
+
+    Function GeneralExceptionInfo(ex As Exception, fileName As String) As String
+        Dim message As String = $"access to read file resulted in:{vbNewLine}{vbNewLine}" &
+        $"{ex.ToString}:{vbNewLine}{vbNewLine}" &
+        $"File Name{vbNewLine}'{fileName}'"
+        Return message$
+    End Function
 
 End Module
