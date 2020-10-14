@@ -1,7 +1,10 @@
-﻿Module FileSystemInfo
+﻿Imports System.IO
+Module FileSystemInfo
+
+
+    'CurrentDir()
 
     Sub main()
-        'CurrentDir()
         ChangeDir()
         Console.Read()
     End Sub
@@ -13,7 +16,8 @@
         Try
             Console.WriteLine(CurDir("C"c))
             Console.WriteLine(CurDir("D"c))
-        Catch badDir As System.IO.IOException
+
+        Catch badDir As IOException
 
         End Try
     End Sub

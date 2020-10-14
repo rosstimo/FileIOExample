@@ -8,7 +8,7 @@ Module ReadWriteAppend
     '<Remarks>
     'ReadFile() allows user to choose text file then reads file into TempArray
     '</Remarks>
-    Private Sub ReadFile(ByVal fileName As String, ByRef recordData() As String)
+    Public Sub ReadFile(ByVal fileName As String, ByRef recordData() As String)
         Dim currentRecord As String
         Dim fileData As String
         Dim fileNumber As Integer = FreeFile()
